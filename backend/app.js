@@ -1,8 +1,12 @@
 const express = require('express');
+require('dotenv').config();  // Load environment variables from .env file
+
 const mongoose = require('mongoose');
 
 const app = express();
-mongoose.connect('mongodb+srv://med:root@cluster0.duch9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+
+const uri = process.env.MONGO_URI;  // MongoDB URI from .env
+mongoose.connect(uri,
     { useNewUrlParser: true,
       useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
